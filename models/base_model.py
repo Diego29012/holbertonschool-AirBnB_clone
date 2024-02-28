@@ -14,6 +14,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initialises a new instance or sets attributes based on kwargs"""
         format = "%Y-%m-%dT%H:%M:%S.%f"
+
         if kwargs:
 
             for key, value in kwargs.items():
@@ -31,7 +32,11 @@ class BaseModel:
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
+        """
+        Updates date and time of the instance and saves to file storage
+        """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         self.save()
