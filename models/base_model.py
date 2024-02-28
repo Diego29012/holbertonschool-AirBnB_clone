@@ -3,7 +3,7 @@
 BaseModel class for AirBnB project.
 """
 import uuid
-
+from datetime import datetime
 
 class BaseModel:
     def __init__(self):
