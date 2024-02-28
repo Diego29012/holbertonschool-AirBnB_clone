@@ -13,6 +13,7 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """Initialises a new instance or sets attributes based on kwargs"""
+        format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
 
             for key, value in kwargs.items():
