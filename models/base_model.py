@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 """
-BaseModel class for AirBnB pr
-from datetime import datetime
+BaseModel class for AirBnB from datetime import datetime
 """
 from datetime import datetime
 import uuid
 
 
 class BaseModel:
+    """"
+    BaseModel class that defines common attributes/methods for other classes
+    """
     def __init__(self):
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
