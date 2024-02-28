@@ -4,16 +4,27 @@ BaseModel class for AirBnB from datetime import datetime
 """
 from datetime import datetime
 import uuid
+from models import storage
 
 
 class BaseModel:
     """"
     BaseModel class that defines common attributes/methods for other classes
     """
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        """Initialises a new instance or sets attributes based on kwargs"""
+        if kwargs:
+
+            for key, value in kwargs.items():
+                if key in ('created_at', 'updated_at'):
+                    value = datetime.strptime(value, format)
+                if key != '__class__':
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
