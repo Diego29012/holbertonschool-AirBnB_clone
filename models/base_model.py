@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """
-BaseModel class for AirBnB project.
-"""
-import uuid
+BaseModel class for AirBnB pr
 from datetime import datetime
+"""
+from datetime import datetime
+import uuid
+
 
 class BaseModel:
     def __init__(self):
