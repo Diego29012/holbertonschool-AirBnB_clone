@@ -3,6 +3,7 @@
 FileStorage
 """
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -36,10 +37,18 @@ class FileStorage():
         with open(filename, "w", encoding='UTF-8') as file:
             json.dump(c_dictionary, file)
 
-    def reload():
+    def reload(self):
         """
         deserializes the JSON file to __objects
         (only if the JSON file (__file_path)exists;
         otherwise, do nothing.
         If the file doesn’t exist, no exception should be raised)
         """
+        filename = FileStorage.__file_path
+        try:
+            with open(filename, "r") as f:
+                json_content = f.read()
+                for key, value in json_content:
+                    FileStorage.__objects[key] = value
+        except FileNotFoundError:
+            pass
