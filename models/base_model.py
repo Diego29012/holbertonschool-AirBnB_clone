@@ -4,7 +4,6 @@ BaseModel class for AirBnB from datetime import datetime
 """
 from datetime import datetime
 import uuid
-from . import storage
 
 
 class BaseModel:
@@ -13,6 +12,7 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """Initialises a new instance or sets attributes based on kwargs"""
+        from . import storage
         if kwargs:
             for key, value in kwargs.items():
                 if key in ('created_at', 'updated_at'):
@@ -35,6 +35,7 @@ class BaseModel:
         """
         Method that update the instance attribute "update_at"
         """
+        from . import storage
         self.updated_at = datetime.now()
         storage.save()
 
