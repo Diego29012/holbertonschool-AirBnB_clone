@@ -8,12 +8,11 @@ from models.base_model import BaseModel
 
 class FileStorage():
     """
-    That serializes instances to a JSON file and deserializes 
+    That serializes instances to a JSON file and deserializes
     JSON file to instances
     """
     __file_path = "file.json"
     __objects = {}
-
 
     def all(self):
         """
@@ -33,7 +32,8 @@ class FileStorage():
         Serializes __objects to the JSON file (path: __file_path)
         """
         filename = FileStorage.__file_path
-        c_dictionary = {key: value for key, value in FileStorage.__objects.items()}
+        c_dictionary = {key: value.to_dict() for key, value in
+                        FileStorage.__objects.items()}
         with open(filename, "w", encoding='UTF-8') as file:
             json.dump(c_dictionary, file)
 
@@ -47,8 +47,10 @@ class FileStorage():
         filename = FileStorage.__file_path
         try:
             with open(filename, "r") as f:
-                json_content = f.read()
-                for key, value in json_content:
-                    FileStorage.__objects[key] = value
+                file_content = f.read()
+                if file_content:
+                    json_content = json.loads(file_content)
+                    for key, value in json_content.items():
+                        FileStorage.__objects[key] = value
         except FileNotFoundError:
             pass
