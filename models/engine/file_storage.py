@@ -2,6 +2,7 @@
 """
 FileStorage
 """
+import json
 
 
 class FileStorage():
@@ -30,6 +31,10 @@ class FileStorage():
         """
         Serializes __objects to the JSON file (path: __file_path)
         """
+        filename = FileStorage.__file_path
+        c_dictionary = {key: value for key, value in FileStorage.__objects.items()}
+        with open(filename, "w", encoding='UTF-8') as file:
+            json.dump(c_dictionary, file)
 
     def reload():
         """
