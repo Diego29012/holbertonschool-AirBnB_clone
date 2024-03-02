@@ -1,31 +1,9 @@
-#!/usr/bin/python3
-"""
-Is the Module for the command interpreter.
-"""
-
 import cmd
-import json
-import models
+from models.base_model import BaseModel 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    The HBNBCommand class definition for the command interpreter.
-    """
     prompt = "(hbnb) "
-    valid_classes = ["BaseModel"]
-
-    def do_quit(self, arg):
-        """Quit command to exit the program"""
-        return True
-
-    def do_EOF(self, arg):
-        """EOF command to exit the program"""
-        print()
-        return True
-
-    def emptyline(self):
-        """Do nothing on empty input line"""
-        pass
+    valid_classes = ["BaseModel"]  
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel"""
@@ -37,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in self.valid_classes:
             print("** class doesn't exist **")
             return
-        new_instance = models.classes[class_name]()
+        new_instance = BaseModel()  
         new_instance.save()
         print(new_instance.id)
 
@@ -121,6 +99,7 @@ class HBNBCommand(cmd.Cmd):
         attribute_value = args[3]
         instance = models.storage.all()[key]
         if hasattr(instance, attribute_name):
+           
             attribute_type = type(getattr(instance, attribute_name))
             try:
                 if attribute_type == int:
@@ -133,6 +112,19 @@ class HBNBCommand(cmd.Cmd):
             instance.save()
         else:
             print("** attribute doesn't exist **")
+
+    def emptyline(self):
+        """Do nothing on empty input line"""
+        pass
+
+    def do_quit(self, arg):
+        """Quit command to exit the program"""
+        return True
+
+    def do_EOF(self, arg):
+        """EOF command to exit the program"""
+        print()
+        return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
