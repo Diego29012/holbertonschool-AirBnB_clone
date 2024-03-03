@@ -17,7 +17,7 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key in ('created_at', 'updated_at'):
                     value = datetime.now()
-                if key != '__class__':
+                elif key != '__class__':
                     setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
@@ -29,7 +29,7 @@ class BaseModel:
         """
         STR method that return a str
         """
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
@@ -44,11 +44,7 @@ class BaseModel:
         This function return a dictionary with all keys and values
         from __dict__
         """
-        obj_dict = dic = {
-            key: value for key, value in self.__dict__.items()
-            if key != '__class__'
-        }
-
+        obj_dict = self.__dict__.copy()
         obj_dict['id'] = self.id
         obj_dict['__class__'] = self.__class__.__name__
         obj_dict['updated_at'] = self.updated_at.isoformat()
