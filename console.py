@@ -1,4 +1,9 @@
+#!/usr/bin/python3
+"""Module that contain with all his commands"""
+
+import sys
 import cmd
+from models import storage
 from models.base_model import BaseModel
 from models.city import City
 from models.user import User
@@ -31,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in self.valid_classes:
             print("** class doesn't exist **")
             return
-        new_instance = BaseModel()
+        new_instance = getattr(sys.modules[__name__], arg)()
         new_instance.save()
         print(new_instance.id)
 
@@ -70,11 +75,11 @@ class HBNBCommand(cmd.Cmd):
             return
         instance_id = args[1]
         key = class_name + "." + instance_id
-        if key not in models.storage.all():
+        if key not in storage.all():
             print("** no instance found **")
             return
-        del models.storage.all()[key]
-        models.storage.save()
+        del storage.all()[key]
+        storage.save()
 
     def do_all(self, arg):
         """Prints all string representation of all instances"""
@@ -82,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
         if args and args[0] not in self.valid_classes:
             print("** class doesn't exist **")
             return
-        objects = models.storage.all()
+        objects = storage.all()
         if args:
             objects = {key: obj for key, obj in objects.items()
                        if args[0] in key}
