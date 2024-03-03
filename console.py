@@ -1,6 +1,12 @@
 import cmd
 from models.base_model import BaseModel
-from models import storage
+from models.city import City
+from models.user import User
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
+from models.state import State
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -11,7 +17,8 @@ class HBNBCommand(cmd.Cmd):
         "Place": Place,
         "City": City,
         "Review": Review,
-        "Amenity" Amenity
+        "Amenity": Amenity,
+        "State": State
         }
 
     def do_create(self, arg):
