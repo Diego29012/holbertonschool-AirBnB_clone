@@ -35,7 +35,7 @@ class FileStorage():
         c_dictionary = {key: value.to_dict() for key, value in
                         FileStorage.__objects.items()}
         with open(filename, "w", encoding='UTF-8') as file:
-            json.dumps(c_dictionary, file)
+            json.dump(c_dictionary, file)
 
     def reload(self):
         """
