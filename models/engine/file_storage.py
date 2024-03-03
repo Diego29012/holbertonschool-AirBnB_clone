@@ -45,9 +45,9 @@ class FileStorage():
         If the file doesn’t exist, no exception should be raised)
         """
         try:
-            with open(self.__file_path) as f:
+            with open(FileStorage.__file_path) as f:
                 file_content = f.read()
                     for key, value in json.load(json_content).items():
-                        self.__objects[key] = eval(value['__class__'])(**value)
+                        FileStorage.__objects[key] = eval(value['__class__'])(**value)
         except FileNotFoundError:
             pass
