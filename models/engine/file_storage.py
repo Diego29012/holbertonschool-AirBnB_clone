@@ -48,12 +48,8 @@ class FileStorage():
         """
         filename = FileStorage.__file_path
         try:
-            with open(filename, "r") as f:
-                file_content = f.read()
-                json_content = json.loads(file_content)
-                for key, value in json_content.items():
-                    class_name = value['__class__']
-                    class_ = globals()[class_name]
-                    self.__objects[key] = class_(**value)
+            with open(self.__file_path) as file:
+                for key, value in json.load(file).items():
+                    self.__objects[key] = eval(value['__class__'])(**value)
         except FileNotFoundError:
             pass
