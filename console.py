@@ -1,10 +1,18 @@
 import cmd
-from models.base_model import BaseModel 
+from models.base_model import BaseModel
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
-    valid_classes = ["BaseModel"]  
+    valid_classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Place": Place,
+        "City": City,
+        "Review": Review,
+        "Amenity" Amenity
+        }
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel"""
@@ -16,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in self.valid_classes:
             print("** class doesn't exist **")
             return
-        new_instance = BaseModel()  
+        new_instance = BaseModel()
         new_instance.save()
         print(new_instance.id)
 
@@ -69,7 +77,8 @@ class HBNBCommand(cmd.Cmd):
             return
         objects = models.storage.all()
         if args:
-            objects = {key: obj for key, obj in objects.items() if args[0] in key}
+            objects = {key: obj for key, obj in objects.items()
+                       if args[0] in key}
         print([str(obj) for obj in objects.values()])
 
     def do_update(self, arg):
@@ -100,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         attribute_value = args[3]
         instance = models.storage.all()[key]
         if hasattr(instance, attribute_name):
-           
+
             attribute_type = type(getattr(instance, attribute_name))
             try:
                 if attribute_type == int:
@@ -126,6 +135,7 @@ class HBNBCommand(cmd.Cmd):
         """EOF command to exit the program"""
         print()
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
