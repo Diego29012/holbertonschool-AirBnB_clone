@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-FileStorage
+FileStorage for save an update date in a json file
 """
 import json
 from models.base_model import BaseModel
@@ -25,7 +25,7 @@ class FileStorage():
          sets in __objects the obj with key <obj class name>.id
         """
         o_class = obj.__class__.__name__
-        FileStorage.__objects[f"{o_class}.{obj.id}"] = obj
+        FileStorage.__objects["{}.{}".format(o_class, obj.id)] = obj
 
     def save(self):
         """
