@@ -52,6 +52,6 @@ class FileStorage():
                 file_content = f.read()
                 json_content = json.loads(file_content)
                 for key, value in json_content.items():
-                    FileStorage.objects[key] = eval(value['__class__'])(**value)
+                    FileStorage.__objects[key] = eval(value['__class__'])(**value)
         except FileNotFoundError:
             pass
