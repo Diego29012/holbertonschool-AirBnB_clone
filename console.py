@@ -13,7 +13,6 @@ from models.place import Place
 from models.state import State
 
 
-
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     valid_classes = {
