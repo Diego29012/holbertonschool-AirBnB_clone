@@ -15,7 +15,6 @@ class FileStorage():
     __objects = {}
 
 
-
     def all(self):
         """
         Returns the dictionary __objects
