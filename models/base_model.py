@@ -4,7 +4,6 @@ BaseModel class for AirBnB from datetime import datetime
 """
 from datetime import datetime
 import uuid
-from models import storage
 
 
 class BaseModel:
