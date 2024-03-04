@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module that contain with all his commands"""
+"""
+Module that contain  a console with all his commands
+"""
 
 import sys
 import cmd
