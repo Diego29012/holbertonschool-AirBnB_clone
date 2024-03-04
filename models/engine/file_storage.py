@@ -4,6 +4,12 @@ FileStorage for save an update date in a json file
 """
 import json
 from models.base_model import BaseModel
+from models.city import City
+from models.user import User
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
+from models.state import State
 
 
 class FileStorage():
@@ -13,8 +19,6 @@ class FileStorage():
     """
     __file_path = "file.json"
     __objects = {}
-
-
 
     def all(self):
         """
@@ -52,6 +56,7 @@ class FileStorage():
                 file_content = f.read()
                 json_content = json.loads(file_content)
                 for key, value in json_content.items():
-                    FileStorage.__objects[key] = eval(value['__class__'])(**value)
+                    FileStorage.__objects[key] = eval(
+                        value['__class__'])(**value)
         except FileNotFoundError:
             pass
