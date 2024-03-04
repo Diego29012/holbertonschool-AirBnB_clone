@@ -108,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
             return
         instance_id = args[1]
         key = class_name + "." + instance_id
-        if key not in models.storage.all():
+        if key not in storage.all():
             print("** no instance found **")
             return
         if len(args) < 3:
@@ -119,21 +119,9 @@ class HBNBCommand(cmd.Cmd):
             return
         attribute_name = args[2]
         attribute_value = args[3]
-        instance = models.storage.all()[key]
-        if hasattr(instance, attribute_name):
-
-            attribute_type = type(getattr(instance, attribute_name))
-            try:
-                if attribute_type == int:
-                    attribute_value = int(attribute_value)
-                elif attribute_type == float:
-                    attribute_value = float(attribute_value)
-            except ValueError:
-                pass
-            setattr(instance, attribute_name, attribute_value)
-            instance.save()
-        else:
-            print("** attribute doesn't exist **")
+        instance = storage.all()[key]
+        instance.__setattr__(attribute_name, attribute_value)
+        instance.save()
 
     def emptyline(self):
         """Do nothing on empty input line"""
