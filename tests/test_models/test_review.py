@@ -8,7 +8,7 @@ import unittest
 
 def test_amenity(unittest.TestCase):
     """
-    Class that testing the clas Review
+    Class that testing the class Review
     """
     model = Review()
 
