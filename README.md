@@ -48,10 +48,10 @@ This section provides a list of contributors to the repository. Refer to the AUT
 
 |File|Description|
 |---|---|
-|[README.md]()|General project information.|
-|[AUTHORS]()|List of contributors.|
-|[base_model.py]() |the BaseModel class serving as a foundation for other models. Common methods like saving, converting to dictionary format, and generating unique IDs. |
-|[__init__.py]()|Sets up the application's storage engine and loads previous data.|
-|[file_storage.py]()|FileStorage class for serialization/deserialization of instances in JSON format. Stores, retrieves, and saves objects.|
-|[test_base_model.py]()|Rigorous tests for the BaseModel class.|
-|[console.py]()|Entry point for the command interpreter.|
+|[README.md](https://github.com/Diego29012/holbertonschool-AirBnB_clone/blob/main/README.md)|General project information.|
+|[AUTHORS](https://github.com/Diego29012/holbertonschool-AirBnB_clone/blob/main/AUTHORS)|List of contributors.|
+|[base_model.py](https://github.com/Diego29012/holbertonschool-AirBnB_clone/blob/main/models/base_model.py) |the BaseModel class serving as a foundation for other models. Common methods like saving, converting to dictionary format, and generating unique IDs. |
+|[__init__.py](https://github.com/Diego29012/holbertonschool-AirBnB_clone/blob/main/models/engine/__init__.py)|Sets up the application's storage engine and loads previous data.|
+|[file_storage.py](https://github.com/Diego29012/holbertonschool-AirBnB_clone/blob/main/models/engine/file_storage.py)|FileStorage class for serialization/deserialization of instances in JSON format. Stores, retrieves, and saves objects.|
+|[test_base_model.py](https://github.com/Diego29012/holbertonschool-AirBnB_clone/blob/main/tests/test_models/test_base_model.py)|Rigorous tests for the BaseModel class.|
+|[console.py](https://github.com/Diego29012/holbertonschool-AirBnB_clone/blob/main/console.py)|Entry point for the command interpreter.|
